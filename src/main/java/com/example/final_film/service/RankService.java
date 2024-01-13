@@ -15,30 +15,34 @@ public class RankService extends ServiceImpl<RankMapper, Rank> {
     private RankMapper rankMapper;
 
     /**
-     * 业务逻辑：热度排行
+     * 热度排行
      * @return 注意返回的是Film的List表
      */
     public List<Film> rankByTemperature() {
+        return null;
     }
 
     /**
-     * 业务逻辑：周排行
+     * 周排行
      * @return 注意返回的是Film的List表
      */
     public List<Film> rankByWeek() {
+        return null;
     }
 
     /**
-     * 业务逻辑：月排行
+     * 月排行
      * @return 注意返回的是Film的List表
      */
     public List<Film> rankByMonth() {
+        return null;
     }
 
     /**
-     * 业务逻辑：好评排行
+     * 好评排行
      * @return 注意返回的是Film的List表
      */
     public List<Film> rankByFavor() {
+        return null;
     }
 }
