@@ -4,6 +4,9 @@ import com.example.final_film.entity.Film;
 import com.example.final_film.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -51,5 +54,18 @@ public class FilmController {
         if (!"".equals(gene))
             return filmService.findFilmByGene(gene);
         else return null;
+    }
+
+
+
+    /**
+     * 业务逻辑：detail
+     * @return 返回detail页
+     */
+    @GetMapping("/film/detail")
+    public String detail(Model model , @PathVariable int id) {
+        model.addAttribute("id",id);
+        // service查询
+        return "detail";
     }
 }

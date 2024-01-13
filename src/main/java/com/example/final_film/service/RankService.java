@@ -18,27 +18,27 @@ public class RankService extends ServiceImpl<RankMapper, Rank> {
      * 业务逻辑：热度排行
      * @return 注意返回的是Film的List表
      */
-    public List<Film> rankByTemperature() {
-    }
+//    public List<Film> rankByTemperature() {
+//    }
 
     /**
      * 业务逻辑：周排行
      * @return 注意返回的是Film的List表
      */
-    public List<Film> rankByWeek() {
-    }
+//    public List<Film> rankByWeek() {
+//    }
 
     /**
      * 业务逻辑：月排行
      * @return 注意返回的是Film的List表
      */
-    public List<Film> rankByMonth() {
-    }
+//    public List<Film> rankByMonth() {
+//    }
 
     /**
      * 业务逻辑：好评排行
      * @return 注意返回的是Film的List表
      */
-    public List<Film> rankByFavor() {
-    }
+//    public List<Film> rankByFavor() {
+//    }
 }

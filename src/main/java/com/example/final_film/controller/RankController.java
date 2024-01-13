@@ -15,30 +15,30 @@ public class RankController {
     private RankService rankService;
 
     //按热播排行
-    @RequestMapping("/rank/rankByTemperature")
-    @ResponseBody
-    public List<Film> rankByTemperature() {
-        return rankService.rankByTemperature();
-    }
-
-    //本周排行
-    @RequestMapping("/rank/rankByWeek")
-    @ResponseBody
-    public List<Film> rankByWeek() {
-        return rankService.rankByWeek();
-    }
-
-    //本月排行
-    @RequestMapping("/rank/rankByMonth")
-    @ResponseBody
-    public List<Film> rankByMonth() {
-        return rankService.rankByMonth();
-    }
-
-    //按好评排行
-    @RequestMapping("/rank/rankByFavor")
-    @ResponseBody
-    public List<Film> rankByFavor() {
-        return rankService.rankByFavor();
-    }
+//    @RequestMapping("/rank/rankByTemperature")
+//    @ResponseBody
+//    public List<Film> rankByTemperature() {
+//        return rankService.rankByTemperature();
+//    }
+//
+//    //本周排行
+//    @RequestMapping("/rank/rankByWeek")
+//    @ResponseBody
+//    public List<Film> rankByWeek() {
+//        return rankService.rankByWeek();
+//    }
+//
+//    //本月排行
+//    @RequestMapping("/rank/rankByMonth")
+//    @ResponseBody
+//    public List<Film> rankByMonth() {
+//        return rankService.rankByMonth();
+//    }
+//
+//    //按好评排行
+//    @RequestMapping("/rank/rankByFavor")
+//    @ResponseBody
+//    public List<Film> rankByFavor() {
+//        return rankService.rankByFavor();
+//    }
 }
