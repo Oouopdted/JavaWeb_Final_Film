@@ -8,7 +8,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-@TableName(value = "rank")
+@TableName(value = "film_rank")
 public class Rank implements Serializable {
     private static final long serialVersionUID = 2l;
     @TableId(value = "id",type = IdType.AUTO)

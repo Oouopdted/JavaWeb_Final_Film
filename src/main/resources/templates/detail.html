@@ -64,8 +64,15 @@
                 <p class="card-text" th:text="${film.actor}">演员：</p>
                 <p class="card-text" th:text="${film.type}">类型：</p>
                 <p class="card-text" th:text="${film.gene}">主题：</p>
-<!--                <p class="card-text" th:text="film.introduce">简介：</p>-->
-                <img src="../static/test.jpeg" class="rounded mx-auto d-block img-fluid" alt="...">
+                <p class="card-text" th:text="${film.introduction}">简介：</p>
+                <div class="text-center">
+                    <a class="btn btn-primary" th:href="'/play?id='+${film.id}">播放</a>
+                </div>
+
+                <div>
+                    <img th:src="${film.thumbnail}" class="rounded mx-auto d-block img-fluid" alt="...">
+                </div>
+
             </div>
             <div class="card-footer text-center text-white">
                 

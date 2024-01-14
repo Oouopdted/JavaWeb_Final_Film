@@ -68,11 +68,11 @@
             <div class="card border-dark" style="max-width: 100%;" th:each="film : ${films}">
                 <div class="row g-0" style="height: 250px;">
                 
-                    <div class="previewBlock col-md-2 " style="background-image: url(../static/test.jpeg); ">
+                    <div class="previewBlock col-md-2 " th:style="'background-image: url(' + ${film.thumbnail} + ');'">
                         <a th:href="@{/film/detail/{id}(id=${film.id})}" class="stretched-link"></a>
                     </div>
                     <div class="previewBlock col-md-8 ">
-                        <h5 class="card-title" th:text="${film.name}">标题：</h5>
+                        <h3 class="card-title" th:text="${film.name}">标题：</h3>
                         <p class="card-text" th:text="${film.maker}">导演：</p>
                         <p class="card-text" th:text="${film.actor}">演员：</p>
                         <p class="card-text" th:text="${film.type}">类型：</p>

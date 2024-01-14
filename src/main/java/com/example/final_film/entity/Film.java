@@ -19,4 +19,7 @@ public class Film implements Serializable {
     private String type;
     private String region;
     private String gene;
+    private String thumbnail;
+    private String introduction;
+
 }
