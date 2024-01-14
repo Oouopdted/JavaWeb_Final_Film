@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.final_film.entity.Film;
 import com.example.final_film.mapper.FilmMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,13 +14,17 @@ import java.util.List;
 public class FilmService extends ServiceImpl<FilmMapper, Film> {
     @Autowired
     private FilmMapper filmMapper;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     /**
-     * 查询所有电影的信息
+     * 查询所有电影的信息并将这部分电影信息缓存在redis中
      * @return 返回一个包含所有电影的List对象
      */
     public List<Film> findAll() {
-        return filmMapper.selectList(null);
+        List<Film> films = filmMapper.selectList(null);
+        redisTemplate.opsForValue().set("films",films);
+        return films;
     }
 
     /**
