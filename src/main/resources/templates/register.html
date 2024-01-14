@@ -383,9 +383,32 @@
             let username = document.querySelector('#username').value; // 获取用户名
             let password = document.querySelector('#password').value; // 获取密码
             // ajax调用注册api
-            
+            let url = '/register';
+            let data = {
+                username: username,
+                password: password
+            };
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => response.json())
+              .then(data => {
+                if (data.code === 200) {
+                    alert('注册成功');
+                    window.location.href = '/login';
+                } else {
+                    alert(data.message);
+                }
+            }).catch((error) => {
+                console.error('Error:', error);
+            });
+
         });
 
     </script>
+    
 </body>
 </html>

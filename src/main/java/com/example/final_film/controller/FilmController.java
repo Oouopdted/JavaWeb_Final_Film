@@ -62,10 +62,12 @@ public class FilmController {
      * 业务逻辑：detail
      * @return 返回detail页
      */
-    @GetMapping("/film/detail")
-    public String detail(Model model , @PathVariable int id) {
+    @GetMapping("/film/detail/{id}")
+    public String detail(Model model , @PathVariable("id") int id) {
         model.addAttribute("id",id);
         // service查询
+        Film film = filmService.findFilmById(id);
+        model.addAttribute("film", film);
         return "detail";
     }
 }

@@ -17,6 +17,10 @@ public class FilmService extends ServiceImpl<FilmMapper, Film> {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    public Film findFilmById(Integer id) {
+        return filmMapper.selectById(id);
+    }
+
     /**
      * 查询所有电影的信息并将这部分电影信息缓存在redis中
      * @return 返回一个包含所有电影的List对象

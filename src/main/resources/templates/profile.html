@@ -59,10 +59,16 @@
 
             </div>
             <div class="card-body bg-light">
-                <p class="card-text" id="ID">ID:</p>
-                <p class="card-text" id="Role">身份:</p>
-                <button type="button" class="btn btn-outline-primary" id="updateButton">升级</button>
 
+                <p class="card-text" id="ID" >用户名:<p th:text="${user.getName()}"></p></p>
+                <p class="card-text" id="Role" >身份:<p th:text="${member}"></p></p>
+
+
+                <div>
+                    <a th:unless="${user.isMember()}" class="btn btn-outline-primary" href="/update">升级</a>
+                    <a class="btn btn-outline-primary" href="/logout">登出</a>
+                </div>
+                
             </div>
             <div class="card-footer text-center text-white">
                 
@@ -71,23 +77,13 @@
     </main>
 
     <script>
-        document.onload = function () {
-            // 获取名为 "myKey" 的会话数据
-            var role = sessionStorage.getItem("role");
-            
-            var btn = document.getElementById("updateButton");
-            if(role=="VIP"){
-                btn.ariaDisabled = true;
-                document.getElementById("updateButton").onclick = function () {
-                    location.href = "/update";
-                };
-            }
-            // 只有当会话数据存在时才会显示这个页面
-            document.getElementById("ID").innerHTML = "ID:"+sessionStorage.getItem("id");
-            document.getElementById("Role").innerHTML = "身份:"+role;
-            
-        };
-        
+        document.getElementById("search").onsubmit = function () {
+            event.preventDefault();
+            var keyword = document.getElementById("input").value;
+            window.location.href = "/search?actor=" + keyword;
+            return false;
+        }
+
     </script>
     <script src="https://fastly.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim"

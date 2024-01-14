@@ -9,6 +9,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
+import java.util.UUID;
 
 
 @Service
@@ -17,28 +18,80 @@ public class UserService extends ServiceImpl<UserMapper,User> {
     private UserMapper userMapper;
     @Autowired
     private RedisTemplate redisTemplate;
+
+
     /**
-     * 根据redis缓存中的ticket更新指定用户为会员用户
-     * @param ticket 指定ticket
-     * @return 将更新后的用户信息作为user对象返回
+     * 根据id更新指定用户为会员用户
+     * @param user 指定user
      */
-    public User updateUser(String ticket) {
-        User user = getUserByTicket(ticket);
+    public void updateUser(User user){
         user.setMember(true);
-        return user;
+        userMapper.updateById(user);
+
+
+    }
+
+
+    /**
+     * 传入用户名和密码进行登陆，如果用户登陆成功则生成随机ticket，并作为set<ticket,name>集合形式存入redis缓存中,缓存中的ticket30个小时后消亡。
+     * @param name 用户名
+     * @param password 用户密码
+     * @return 如果用户存在返回ticket，不存在则返回空字符串。
+     */
+    public String login(String name,String password) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("name",name);
+        User user = userMapper.selectOne(queryWrapper);
+        if (user==null) {
+            return "";
+        } else if (user.getPassword().equals(password)) {
+            String ticket = UUID.randomUUID().toString();
+            redisTemplate.opsForValue().set(ticket,user.getId(),Duration.ofMinutes(30));
+            return ticket;
+        }else {
+            return "";
+        }
     }
 
     /**
-     * 传入ticket查询相关用户的信息
-     * @param ticket redis中ticket值
-     * @return 相关用户对象
+     * 根据redis缓存中的ticket值查询对应用户信息并返回,查询结果会缓存在redis中
+     * @param ticket redis缓存中的ticket值
+     * @return 返回相应用户
      */
-    public User getUserByTicket(String ticket) {
-        String name = (String) redisTemplate.opsForValue().get(ticket);
+    public User queryByTicket(String ticket) {
+        Integer id = (Integer) redisTemplate.opsForValue().get(ticket);
         QueryWrapper queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("name",name);
+        queryWrapper.eq("id",id);
         User user = userMapper.selectOne(queryWrapper);
         return user;
     }
 
+    /**
+     * 根据ticket删除redis中用户的缓存数据，但数据库中的数据未被删除
+     * @param ticket 用户相应的ticket
+     */
+    public void logout(String ticket) {
+        redisTemplate.delete(ticket);
+    }
+
+    /**
+     * 传入用户名和密码进行注册，注册后用户默认为非会员用户，此时用户的信息未存进redis缓存中，需注册后需再次登陆
+     * @param name 用户名
+     * @param password 密码
+     */
+    public void register(String name,String password) {
+        User user = new User();
+        user.setName(name);
+        user.setPassword(password);
+        user.setMember(false);
+        userMapper.insert(user);
+    }
+
+    public User queryByName(String name) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("name",name);
+        User user = userMapper.selectOne(queryWrapper);
+        System.out.println(user);
+        return user;
+    }
 }
