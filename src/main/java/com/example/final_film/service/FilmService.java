@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class FilmService extends ServiceImpl<FilmMapper, Film> {
@@ -74,4 +77,58 @@ public class FilmService extends ServiceImpl<FilmMapper, Film> {
         queryWrapper.eq("gene",gene);
         return filmMapper.selectList(queryWrapper);
     }
+
+    /**
+     * 将电影按照type分组
+     * @return 返回一个包含所有电影类型的Map对象
+     */
+    public Map<String, List<Film>> groupByType(){
+
+        List<Film> ret= filmMapper.selectList(null);
+        Map<String, List<Film>> mp_films = new HashMap<>();
+        for(Film film:ret) {
+            if (mp_films.get(film.getType()) == null)
+                mp_films.put(film.getType(), new ArrayList<Film>());
+            mp_films.get(film.getType()).add(film);
+
+        }
+        return mp_films;
+    }
+
+    /**
+     * 将电影按照region分组
+     * @return 返回一个包含所有电影类型的Map对象
+     */
+    public Map<String, List<Film>> groupByRegion(){
+
+        List<Film> ret= filmMapper.selectList(null);
+        Map<String, List<Film>> mp_films = new HashMap<>();
+        for(Film film:ret) {
+            if(mp_films.get(film.getRegion())==null)
+                mp_films.put(film.getRegion(),new ArrayList<Film>());
+            mp_films.get(film.getRegion()).add(film);
+
+        }
+        return mp_films;
+    }
+
+    /**
+     * 将电影按照gene分组
+     * @return 返回一个包含所有电影类型的Map对象
+     */
+    public Map<String, List<Film>> groupByGene(){
+
+        List<Film> ret= filmMapper.selectList(null);
+        Map<String, List<Film>> mp_films = new HashMap<>();
+        for(Film film:ret) {
+            if(mp_films.get(film.getGene())==null)
+                mp_films.put(film.getGene(),new ArrayList<Film>());
+            mp_films.get(film.getGene()).add(film);
+
+        }
+        return mp_films;
+    }
+
+
+
 }

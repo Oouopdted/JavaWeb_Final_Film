@@ -20,38 +20,65 @@
 </head>
 
 <body>
-    <header class="p-3 mb-3 text-bg-dark">
-        <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                
-                
-                <div class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <a href="/index" class="nav-link text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
-                            <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z"/>
-                            
-                        </svg>
+<header class="p-3 mb-3 text-bg-dark">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
-                    </a>
-                    
-                    
-                </div>
+            <div class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <a href="/index" class="nav-link text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                         class="bi bi-house-door" viewBox="0 0 16 16">
+                        <path
+                                d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z" />
 
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-                </form>
+                    </svg>
 
-                <div class="text-end">
-                    <a href="/profile" class="nav-link text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                        </svg>
-                    </a>
+                </a>
+                <a href="/group/ByRegion" class="nav-link text-white">
+                    <h5>按地区分类</h5>
+                </a>
+                <a href="/group/ByType" class="nav-link text-white">
+                    <h5>按类型分类</h5>
+                </a>
 
-                </div>
+                <a href="/group/ByGene" class="nav-link text-white">
+                    <h5>按Gene分类</h5>
+                </a>
+                <a href="/rank/ByMonth" class="nav-link text-white">
+                    <h5>按月热度排</h5>
+                </a>
+                <a href="/rank/ByWeek" class="nav-link text-white">
+                    <h5>按周热度排</h5>
+                </a>
+                <a href="/rank/ByTemperature" class="nav-link text-white">
+                    <h5>按热度排</h5>
+                </a>
+                <a href="/rank/ByFavor" class="nav-link text-white">
+                    <h5>按好评排</h5>
+                </a>
             </div>
+
+
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" id="search">
+                <input id="input" type="search" class="form-control" placeholder="Search..." aria-label="Search">
+            </form>
+
+            <div class="text-end">
+                <a href="/profile" class="nav-link text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                         class="bi bi-person" viewBox="0 0 16 16">
+                        <path
+                                d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                    </svg>
+
+                </a>
+
+            </div>
+
+
         </div>
-    </header>
+    </div>
+</header>
     <main class="container">
         
         <div class="card bg-dark">
@@ -65,8 +92,9 @@
                 <p class="card-text" th:text="${film.type}">类型：</p>
                 <p class="card-text" th:text="${film.gene}">主题：</p>
                 <p class="card-text" th:text="${film.introduction}">简介：</p>
-                <div class="text-center">
-                    <a class="btn btn-primary" th:href="'/play?id='+${film.id}">播放</a>
+                <div class="d-grid gap-2">
+                    <a class="btn btn-primary " th:href="'/play?id='+${film.id}" role="button" th:if="${member!=null && member=='VIP'}")>播放</a>
+                    <a class="btn btn-primary disabled" href="#" th:if="${member==null || member=='普通用户'}") role="button" aria-disabled="true">非VIP不能播放</a>
                 </div>
 
                 <div>

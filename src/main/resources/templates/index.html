@@ -34,9 +34,30 @@
                         </svg>
 
                     </a>
+                    <a href="/group/ByRegion" class="nav-link text-white">
+                        <h5>按地区分类</h5>
+                    </a>
+                    <a href="/group/ByType" class="nav-link text-white">
+                        <h5>按类型分类</h5>
+                    </a>
 
-
+                    <a href="/group/ByGene" class="nav-link text-white">
+                        <h5>按Gene分类</h5>
+                    </a>
+                    <a href="/rank/ByMonth" class="nav-link text-white">
+                        <h5>按月热度排</h5>
+                    </a>
+                    <a href="/rank/ByWeek" class="nav-link text-white">
+                        <h5>按周热度排</h5>
+                    </a>
+                    <a href="/rank/ByTemperature" class="nav-link text-white">
+                        <h5>按热度排</h5>
+                    </a>
+                    <a href="/rank/ByFavor" class="nav-link text-white">
+                        <h5>按好评排</h5>
+                    </a>
                 </div>
+
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" id="search">
                     <input id="input" type="search" class="form-control" placeholder="Search..." aria-label="Search">
@@ -62,7 +83,12 @@
         
         <div class="card bg-dark">
             <div class="card-header text-center text-white">
-                <h1>所有影片展示</h1>
+                <div th:if="${rank_type!=null}">
+                    <h1 th:text="'按照'+${rank_type}+'排'"></h1>
+                </div>
+                <div th:if="${rank_type==null}">
+                    <h1>所有影片展示</h1>
+                </div>
             </div>
 
             <div class="card border-dark" style="max-width: 100%;" th:each="film : ${films}">

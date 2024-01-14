@@ -16,7 +16,7 @@
 
         }
     </style>
-    
+
 </head>
 
 <body>
@@ -80,29 +80,40 @@
     </div>
 </header>
     <main class="container">
+        
         <div class="card bg-dark">
             <div class="card-header text-center text-white">
-                <h1>个人信息</h1>
-
+                <h1 th:text="'按照'+${group_type}+'分类'"></h1>
             </div>
-            <div class="card-body bg-light">
-
-                <p class="card-text" id="ID" >用户名:<p th:text="${user.getName()}"></p></p>
-                <p class="card-text" id="Role" >身份:<p th:text="${member}"></p></p>
-
-
-                <div>
-                    <a th:unless="${user.isMember()}" class="btn btn-outline-primary" href="/update">升级</a>
-                    <a class="btn btn-outline-primary" href="/logout">登出</a>
+            <div class="card" th:each="entry:${mp_films}">
+                <div class="card-header">
+                    <h2 th:text="${entry.key}"></h2>
                 </div>
-                
+                <div class="card border-dark" style="max-width: 100%;" th:each="film : ${entry.value}">
+
+                    <div class="row g-0" style="height: 250px;">
+
+                        <div class="previewBlock col-md-2 " th:style="'background-image: url(' + ${film.thumbnail} + ');'">
+                            <a th:href="@{/film/detail/{id}(id=${film.id})}" class="stretched-link"></a>
+                        </div>
+                        <div class="previewBlock col-md-8 ">
+                            <h3 class="card-title" th:text="${film.name}">标题：</h3>
+                            <p class="card-text" th:text="${film.maker}">导演：</p>
+                            <p class="card-text" th:text="${film.actor}">演员：</p>
+                            <p class="card-text" th:text="${film.type}">类型：</p>
+                            <p class="card-text" th:text="${film.region}">上映地区：</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="card-footer text-center text-white">
-                
+
             </div>
+
+
         </div>
     </main>
-
     <script>
         document.getElementById("search").onsubmit = function () {
             event.preventDefault();
@@ -112,6 +123,7 @@
         }
 
     </script>
+
     <script src="https://fastly.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim"
         crossorigin="anonymous"></script>
